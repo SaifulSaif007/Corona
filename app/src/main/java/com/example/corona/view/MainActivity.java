@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.example.corona.R;
 import com.example.corona.databinding.ActivityMainBinding;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         serviceViewModel_all = ViewModelProviders.of(this).get(CoronaServiceViewModel_All.class);
 
 
+        getSupportActionBar().hide();
+
         observeViewModel(serviceViewModel_all);
 
     }
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         serviceViewModel_all.allServiceObserver().observe(this, all -> {
 
             if(all != null){
+                all.setActiveCases(all.getCases() - all.getDeaths() - all.getRecovered());
                 activityMainBinding.setAll(all);
             }
         });

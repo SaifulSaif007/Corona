@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Corona</string>
+    <string name="details_info">Details Info</string>
+    <string name="recovered">Recovered :</string>
+    <string name="total_deaths">Total Deaths :</string>
+    <string name="active_cases">Active Cases :</string>
+    <string name="total_cases">Total Cases</string>
+    <string name="corona_virus_updates">Corona Virus Updates</string>
 </resources>
