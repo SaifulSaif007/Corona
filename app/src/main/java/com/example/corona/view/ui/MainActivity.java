@@ -1,18 +1,20 @@
-package com.example.corona.view;
+package com.example.corona.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.WindowManager;
 
 import com.example.corona.R;
 import com.example.corona.databinding.ActivityMainBinding;
-import com.example.corona.services.model.All;
+import com.example.corona.view.callback.IMainActivity;
 import com.example.corona.viewmodel.CoronaServiceViewModel_All;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Objects;
+
+public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     ActivityMainBinding activityMainBinding;
     CoronaServiceViewModel_All serviceViewModel_all;
@@ -26,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
         serviceViewModel_all = ViewModelProviders.of(this).get(CoronaServiceViewModel_All.class);
 
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         observeViewModel(serviceViewModel_all);
+        activityMainBinding.setIMainActivityCallBack(this);
 
     }
 
@@ -41,5 +44,13 @@ public class MainActivity extends AppCompatActivity {
                 activityMainBinding.setAll(all);
             }
         });
+    }
+
+
+    @Override
+    public void detailedInfo() {
+        Intent countryIntent = new Intent(this, CountryListActivity.class);
+        startActivity(countryIntent);
+
     }
 }
