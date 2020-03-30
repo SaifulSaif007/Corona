@@ -8,12 +8,21 @@
         <variable
             name="countryLists"
             type="com.example.corona.services.model.CountryList" />
+        
+        <variable
+            name="adapter"
+            type="com.example.corona.view.callback.ICountryListRecycler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{ ()-> adapter.onItemClick()}"
+        >
 
         <ImageView
             android:id="@+id/mFlag"

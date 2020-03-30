@@ -13,15 +13,15 @@ import com.example.corona.R;
 import com.example.corona.databinding.ActivityCountryListBinding;
 import com.example.corona.services.model.CountryList;
 import com.example.corona.view.adapter.CountryListRecycler_Adapter;
+import com.example.corona.view.callback.ICountryListRecycler;
 import com.example.corona.viewmodel.CoronaServiceViewModel_CountryList;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class CountryListActivity extends AppCompatActivity {
+public class CountryListActivity extends AppCompatActivity{
 
     ActivityCountryListBinding countryListBinding;
     CoronaServiceViewModel_CountryList coronaServiceViewModel_countryList;
@@ -49,7 +49,7 @@ public class CountryListActivity extends AppCompatActivity {
 
         countryLists = new ArrayList<>();
 
-        countryListRecyclerAdapter = new CountryListRecycler_Adapter( countryLists);
+        countryListRecyclerAdapter = new CountryListRecycler_Adapter(countryLists);
 
         int numColumns = 1;
 
@@ -64,7 +64,6 @@ public class CountryListActivity extends AppCompatActivity {
         countryListBinding.mCountrylistRecycler.setHasFixedSize(true);
 
         countryListBinding.mCountrylistRecycler.setAdapter(countryListRecyclerAdapter);
-
     }
 
 
@@ -81,4 +80,6 @@ public class CountryListActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
