@@ -3,6 +3,8 @@ package com.example.corona.view.adapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,15 +16,25 @@ import com.example.corona.databinding.ItemCountryListBinding;
 import com.example.corona.services.model.CountryList;
 import com.example.corona.view.callback.ICountryListRecycler;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryListRecycler_Adapter.RecycleViewHolder> {
+public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryListRecycler_Adapter.RecycleViewHolder> implements Filterable {
 
     private List<CountryList> countryLists;
+    private List<CountryList> countryListALL;
+    private itemClickListner listner;
 
-
-    public CountryListRecycler_Adapter(List<CountryList> countryLists) {
+    public CountryListRecycler_Adapter(List<CountryList> countryLists, itemClickListner clickListner) {
         this.countryLists = countryLists;
+        this.listner = clickListner;
+    }
+
+    public void SetAllList(List<CountryList> countryListA){
+        this.countryListALL = new ArrayList<>(countryListA);
+        Collections.reverse(countryListALL);
     }
 
     @NonNull
@@ -40,10 +52,10 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
         holder.itemCountryListBinding.setCountryLists(countryLists.get(position));
 
         final ItemCountryListBinding itemCountryListBinding = holder.getItemCountryListBinding();
-        itemCountryListBinding.setAdapter(new ICountryListRecycler() {
+        itemCountryListBinding.setICountryCallBack(new ICountryListRecycler() {
             @Override
             public void onItemClick() {
-                Log.e("Ok", "" + countryLists.get(position).getCountry());
+                listner.onItemClick(position);
             }
         });
     }
@@ -52,6 +64,43 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
     public int getItemCount() {
         return countryLists.size();
     }
+
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<CountryList> filteredList = new ArrayList<>();
+
+            if(constraint.toString().isEmpty()){
+                filteredList.addAll(countryListALL);
+            }
+            else {
+                for (int i=0; i< countryListALL.size(); i++){
+                    if(countryListALL.get(i).getCountry().toLowerCase().contains(constraint.toString().toLowerCase())){
+                        filteredList.add(countryListALL.get(i));
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            countryLists.clear();
+            countryLists.addAll((Collection<? extends CountryList>) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+
 
 
     static class RecycleViewHolder extends RecyclerView.ViewHolder{
@@ -71,5 +120,7 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
         }
     }
 
-
+    public interface itemClickListner{
+        void onItemClick(int position);
+    }
 }
