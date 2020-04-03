@@ -17,6 +17,9 @@
         <variable
             name="iMainActivityCallBack"
             type="com.example.corona.view.callback.IMainActivity" />
+
+        <import type="com.example.corona.view.util.NumberString" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -151,13 +154,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.12" />
+            app:layout_constraintGuide_percent="0.1" />
 
         <TextView
             android:id="@+id/mTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(all.cases)}"
+            android:text="@{NumberString.numberFormat(all.cases)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mActive"
@@ -168,7 +171,7 @@
             android:id="@+id/mActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(all.activeCases)}"
+            android:text="@{NumberString.numberFormat(all.activeCases)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mRec"
@@ -179,7 +182,7 @@
             android:id="@+id/mRec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(all.recovered)}"
+            android:text="@{NumberString.numberFormat(all.recovered)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mDeath"
@@ -190,7 +193,7 @@
             android:id="@+id/mDeath"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(all.deaths)}"
+            android:text="@{NumberString.numberFormat(all.deaths)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -202,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.55" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"

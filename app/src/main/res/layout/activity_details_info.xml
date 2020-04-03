@@ -10,6 +10,9 @@
         <variable
             name="Detail"
             type="com.example.corona.services.model.CountryList" />
+
+        <import type="com.example.corona.view.util.NumberString" />
+
     </data>
 
 
@@ -121,13 +124,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.08" />
 
         <TextView
             android:id="@+id/mTotalCases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(Detail.cases)}"
+            android:text="@{NumberString.numberFormat(Detail.cases)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mTodayNewCases"
@@ -138,7 +141,7 @@
             android:id="@+id/mTodayNewCases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(Detail.todayCases)}"
+            android:text="@{NumberString.numberFormat(Detail.todayCases)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mActiveCases"
@@ -149,7 +152,7 @@
             android:id="@+id/mActiveCases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(Detail.active)}"
+            android:text="@{NumberString.numberFormat(Detail.active)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mTotalDeaths"
@@ -160,7 +163,7 @@
             android:id="@+id/mTotalDeaths"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(Detail.deaths)}"
+            android:text="@{NumberString.numberFormat(Detail.deaths)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mTodayNewDeaths"
@@ -171,7 +174,7 @@
             android:id="@+id/mTodayNewDeaths"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(Detail.todayDeaths)}"
+            android:text="@{NumberString.numberFormat(Detail.todayDeaths)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mCriticalCases"
@@ -182,7 +185,7 @@
             android:id="@+id/mCriticalCases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(Detail.critical)}"
+            android:text="@{NumberString.numberFormat(Detail.critical)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mTotalRecovered"
@@ -194,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{String.valueOf(Detail.recovered)}"
+            android:text="@{NumberString.numberFormat(Detail.recovered)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline16"
@@ -241,7 +244,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.55" />
+            app:layout_constraintGuide_percent="0.62" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
