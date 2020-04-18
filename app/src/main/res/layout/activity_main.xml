@@ -38,7 +38,8 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/corona_logo">
 
         </ImageView>
 
@@ -91,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.35" />
 
         <TextView
             android:id="@+id/textView2"
@@ -131,12 +132,12 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="#D8CCF1"
+            android:onClick="@{() -> iMainActivityCallBack.detailedInfo()}"
             android:text="@string/details_info"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="14sp"
             android:textStyle="italic"
-            android:onClick="@{() -> iMainActivityCallBack.detailedInfo()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -147,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8" />
+            app:layout_constraintGuide_percent="0.9" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -160,52 +161,52 @@
             android:id="@+id/mTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{NumberString.numberFormat(all.cases)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mActive"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            tools:text="@{NumberString.numberFormat(all.cases)}" />
 
         <TextView
             android:id="@+id/mActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{NumberString.numberFormat(all.activeCases)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mRec"
             app:layout_constraintStart_toStartOf="@+id/mTotal"
-            app:layout_constraintTop_toBottomOf="@+id/mTotal" />
+            app:layout_constraintTop_toBottomOf="@+id/mTotal"
+            tools:text="@{NumberString.numberFormat(all.activeCases)}" />
 
         <TextView
             android:id="@+id/mRec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{NumberString.numberFormat(all.recovered)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/mDeath"
             app:layout_constraintStart_toStartOf="@+id/mActive"
-            app:layout_constraintTop_toBottomOf="@+id/mActive" />
+            app:layout_constraintTop_toBottomOf="@+id/mActive"
+            tools:text="@{NumberString.numberFormat(all.recovered)}" />
 
         <TextView
             android:id="@+id/mDeath"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{NumberString.numberFormat(all.deaths)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintBottom_toTopOf="@+id/critical"
             app:layout_constraintStart_toStartOf="@+id/mRec"
-            app:layout_constraintTop_toBottomOf="@+id/mRec" />
+            app:layout_constraintTop_toBottomOf="@+id/mRec"
+            tools:text="@{NumberString.numberFormat(all.deaths)}" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.55" />
+            app:layout_constraintGuide_percent="0.58" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
@@ -213,6 +214,70 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.88" />
+
+        <TextView
+            android:id="@+id/textview7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/critical_cases"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHighlight="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/critical"
+            app:layout_constraintStart_toStartOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/critical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView17"
+            app:layout_constraintStart_toStartOf="@+id/mDeath"
+            app:layout_constraintTop_toBottomOf="@+id/mDeath"
+            tools:text="@{NumberString.numberFormat(all.critical)}" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_tests"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView17"
+            app:layout_constraintStart_toStartOf="@+id/textview7" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView19"
+            app:layout_constraintStart_toStartOf="@+id/critical"
+            app:layout_constraintTop_toBottomOf="@+id/critical"
+            tools:text="@{NumberString.numberFormat(all.totalTests)}" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/affected_countries"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
+            app:layout_constraintStart_toStartOf="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/textView17"
+            tools:text="@{NumberString.numberFormat(all.affectedCountries)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

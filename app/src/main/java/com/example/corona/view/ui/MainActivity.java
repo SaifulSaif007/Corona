@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         serviceViewModel_all.allServiceObserver().observe(this, all -> {
 
             if(all != null){
-                all.setActiveCases(all.getCases() - all.getDeaths() - all.getRecovered());
                 activityMainBinding.setAll(all);
             }
         });

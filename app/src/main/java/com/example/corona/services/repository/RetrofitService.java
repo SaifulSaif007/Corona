@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
-    private static String BASE_URL = "https://corona.lmao.ninja/";
+    private static String BASE_URL = "https://corona.lmao.ninja/v2/";
 
     private static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
