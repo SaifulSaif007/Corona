@@ -5,40 +5,38 @@ import com.google.gson.annotations.SerializedName;
 
 public class CountryList {
 
-
-    @Expose
     @SerializedName("deathsPerOneMillion")
     private double deathsPerOneMillion;
-    @Expose
     @SerializedName("casesPerOneMillion")
     private double casesPerOneMillion;
-    @Expose
     @SerializedName("critical")
     private int critical;
-    @Expose
     @SerializedName("active")
     private int active;
-    @Expose
     @SerializedName("recovered")
     private int recovered;
-    @Expose
     @SerializedName("todayDeaths")
     private int todayDeaths;
-    @Expose
     @SerializedName("deaths")
     private int deaths;
-    @Expose
     @SerializedName("todayCases")
     private int todayCases;
-    @Expose
     @SerializedName("cases")
     private int cases;
-    @Expose
     @SerializedName("countryInfo")
     private CountryInfo countryInfo;
-    @Expose
+
     @SerializedName("country")
     private String country;
+
+    @SerializedName("continent")
+    private String continent;
+
+    @SerializedName("tests")
+    private int tests;
+
+    @SerializedName("updated")
+    private long updated;
 
     public double getDeathsPerOneMillion() {
         return deathsPerOneMillion;
@@ -126,6 +124,30 @@ public class CountryList {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    public int getTests() {
+        return tests;
+    }
+
+    public void setTests(int tests) {
+        this.tests = tests;
+    }
+
+    public long getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(long updated) {
+        this.updated = updated;
     }
 
     public static class CountryInfo {
