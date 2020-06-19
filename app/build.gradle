@@ -54,4 +54,11 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //rxJava
+    def rxJavaVersion  = '3.0.0'
+    implementation "io.reactivex.rxjava3:rxandroid:$rxJavaVersion"
+    implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
+
+    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
 }

@@ -5,6 +5,7 @@ import com.example.corona.services.model.CountryList;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -13,7 +14,7 @@ import retrofit2.http.Query;
 public interface CoronaServices {
 
     @GET("all")
-    Call<All> getAllInfo();
+    Observable<All> getAllInfo();
 
     @GET("countries")
     Call<List<CountryList>> GetCountryList(

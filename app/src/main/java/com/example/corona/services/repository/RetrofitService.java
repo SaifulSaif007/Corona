@@ -8,6 +8,7 @@ import java.io.EOFException;
 import java.io.File;
 import java.util.Objects;
 
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,6 +41,7 @@ public class RetrofitService {
     private static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(httpClient)
             .build();
 
