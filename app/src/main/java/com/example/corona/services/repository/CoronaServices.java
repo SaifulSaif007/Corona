@@ -17,10 +17,10 @@ public interface CoronaServices {
     Observable<All> getAllInfo();
 
     @GET("countries")
-    Call<List<CountryList>> GetCountryList(
+    Observable<List<CountryList>> GetCountryList(
     @Query("sort") String type);
 
     @GET("countries/{country}")
-    Call<CountryList> DetailsInfo(@Path("country") String country);
+    Observable<CountryList> DetailsInfo(@Path("country") String country);
 
 }

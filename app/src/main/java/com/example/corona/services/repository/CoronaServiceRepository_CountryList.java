@@ -9,6 +9,11 @@ import com.example.corona.services.model.CountryList;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,17 +38,30 @@ public class CoronaServiceRepository_CountryList {
     public LiveData<List<CountryList>> getCountry(){
         final MutableLiveData<List<CountryList>> data = new MutableLiveData<>();
 
-        coronaServices.GetCountryList("country").enqueue(new Callback<List<CountryList>>() {
-            @Override
-            public void onResponse(Call<List<CountryList>> call, Response<List<CountryList>> response) {
-                data.setValue(response.body());
-            }
+        coronaServices.GetCountryList("country")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<CountryList>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
 
-            @Override
-            public void onFailure(Call<List<CountryList>> call, Throwable t) {
-                Log.e("error", "" + t.getMessage());
-            }
-        });
+                    }
+
+                    @Override
+                    public void onNext(@NonNull List<CountryList> countryLists) {
+                        data.setValue(countryLists);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e("Error", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
         return data;
     }
