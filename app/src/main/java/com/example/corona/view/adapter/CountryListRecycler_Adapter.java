@@ -2,7 +2,10 @@ package com.example.corona.view.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
     private List<CountryList> countryLists;
     private List<CountryList> countryListALL;
     private itemClickListner listner;
+    private int lastPosition = -1;
 
     public CountryListRecycler_Adapter(List<CountryList> countryLists, itemClickListner clickListner) {
         this.countryLists = countryLists;
@@ -52,12 +56,9 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
         holder.itemCountryListBinding.setCountryLists(countryLists.get(position));
 
         final ItemCountryListBinding itemCountryListBinding = holder.getItemCountryListBinding();
-        itemCountryListBinding.setICountryCallBack(new ICountryListRecycler() {
-            @Override
-            public void onItemClick() {
-                listner.onItemClick(position);
-            }
-        });
+        setAnimation(holder.itemView, position);
+
+        itemCountryListBinding.setICountryCallBack(() -> listner.onItemClick(position));
     }
 
     @Override
@@ -119,6 +120,17 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
             return itemCountryListBinding;
         }
     }
+
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+
+            Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(), android.R.anim.fade_in);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+
+    }
+
 
     public interface itemClickListner{
         void onItemClick(int position);

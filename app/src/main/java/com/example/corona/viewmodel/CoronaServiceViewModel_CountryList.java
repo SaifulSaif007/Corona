@@ -17,7 +17,10 @@ public class CoronaServiceViewModel_CountryList extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<List<CountryList>> getCountryList(){
-        return CoronaServiceRepository_CountryList.getInstance().getCountry();
-    }
+    public LiveData<List<CountryList>> country = CoronaServiceRepository_CountryList.getInstance().getCountry();
+
+//    public LiveData<List<CountryList>> getCountryList(){
+//        return CoronaServiceRepository_CountryList.getInstance().getCountry();
+//    }
+
 }

@@ -3,14 +3,20 @@ package com.example.corona.view.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
 
 import com.example.corona.R;
 import com.example.corona.databinding.ActivityCountryListBinding;
@@ -38,10 +44,13 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
 
         countryListBinding = DataBindingUtil.setContentView(this, R.layout.activity_country_list);
 
-        coronaServiceViewModel_countryList = ViewModelProviders.of(this).get(CoronaServiceViewModel_CountryList.class);
+        initRecycler();
+
+        coronaServiceViewModel_countryList = new ViewModelProvider(this).get(CoronaServiceViewModel_CountryList.class);
+
 
         ObserveViewModel(coronaServiceViewModel_countryList);
-        initRecycler();
+
     }
 
 
@@ -62,11 +71,12 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
         countryListBinding.mCountrylistRecycler.setHasFixedSize(true);
 
         countryListBinding.mCountrylistRecycler.setAdapter(countryListRecyclerAdapter);
+
     }
 
 
     private void ObserveViewModel(CoronaServiceViewModel_CountryList coronaServiceViewModel_countryList) {
-        coronaServiceViewModel_countryList.getCountryList().observe(this, countryList -> {
+        coronaServiceViewModel_countryList.country.observe(this, countryList -> {
 
             if(countryList != null){
 
@@ -105,7 +115,7 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
             @Override
             public boolean onQueryTextChange(String newText) {
                 countryListRecyclerAdapter.getFilter().filter(newText);
-                return false;
+                return true;
             }
         });
 
