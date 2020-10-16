@@ -10,18 +10,21 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 
 import com.example.corona.R;
 import com.example.corona.databinding.ActivityCountryListBinding;
 import com.example.corona.services.model.CountryList;
 import com.example.corona.view.adapter.CountryListRecycler_Adapter;
+import com.example.corona.view.util.ItemDecorator;
 import com.example.corona.viewmodel.CoronaServiceViewModel_CountryList;
 
 import java.util.ArrayList;
@@ -40,15 +43,12 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_country_list);
 
         countryListBinding = DataBindingUtil.setContentView(this, R.layout.activity_country_list);
-
+        countryListBinding.progressBar.setVisibility(View.VISIBLE);
         initRecycler();
 
         coronaServiceViewModel_countryList = new ViewModelProvider(this).get(CoronaServiceViewModel_CountryList.class);
-
-
         ObserveViewModel(coronaServiceViewModel_countryList);
 
     }
@@ -68,6 +68,8 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
 
         countryListBinding.mCountrylistRecycler.setLayoutManager(gridLayoutManager);
 
+        countryListBinding.mCountrylistRecycler.addItemDecoration(new ItemDecorator());
+
         countryListBinding.mCountrylistRecycler.setHasFixedSize(true);
 
         countryListBinding.mCountrylistRecycler.setAdapter(countryListRecyclerAdapter);
@@ -86,6 +88,7 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
                 countryListRecyclerAdapter.SetAllList(countryList);
 
                 countryListRecyclerAdapter.notifyDataSetChanged();
+                countryListBinding.progressBar.setVisibility(View.INVISIBLE);
 
             }
         });

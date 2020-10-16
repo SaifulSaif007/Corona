@@ -2,10 +2,13 @@ package com.example.corona.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.corona.R;
 import com.example.corona.databinding.ActivityMainBinding;
@@ -22,14 +25,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        serviceViewModel_all = ViewModelProviders.of(this).get(CoronaServiceViewModel_All.class);
-
-
+        serviceViewModel_all = new ViewModelProvider(this).get(CoronaServiceViewModel_All.class);
         Objects.requireNonNull(getSupportActionBar()).hide();
-
+        activityMainBinding.progressBar.setVisibility(View.VISIBLE);
         observeViewModel(serviceViewModel_all);
         activityMainBinding.setIMainActivityCallBack(this);
 
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
             if(all != null){
                 activityMainBinding.setAll(all);
+                activityMainBinding.progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
