@@ -30,6 +30,7 @@ public class DetailsInfoActivity extends AppCompatActivity {
         String Country = getIntent().getStringExtra("country");
 
         getSupportActionBar().setTitle("Corona Updates");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         observeViewModel(model_detailsInfo, Country);
         
     }
@@ -41,5 +42,11 @@ public class DetailsInfoActivity extends AppCompatActivity {
                 detailsInfoBinding.progressBar.setVisibility(View.INVISIBLE);
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

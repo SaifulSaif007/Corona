@@ -51,6 +51,8 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
         coronaServiceViewModel_countryList = new ViewModelProvider(this).get(CoronaServiceViewModel_CountryList.class);
         ObserveViewModel(coronaServiceViewModel_countryList);
 
+        getSupportActionBar().setTitle("Country");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -123,5 +125,11 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }
