@@ -11,6 +11,6 @@ public class ItemDecorator extends RecyclerView.ItemDecoration {
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
 
         super.getItemOffsets(outRect, view, parent, state);
-        outRect.top = 15;
+        outRect.top = 20;
     }
 }

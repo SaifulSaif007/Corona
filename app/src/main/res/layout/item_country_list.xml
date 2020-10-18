@@ -23,8 +23,9 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="8dp"
         android:padding="5dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,30 +38,40 @@
             android:onClick="@{ ()-> iCountryCallBack.onItemClick()}"
             >
 
-            <ImageView
-                android:id="@+id/mFlag"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/image_card"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="10dp"
-                android:contentDescription="@string/flag"
-                android:scaleType="centerCrop"
-                app:imageResource="@{countryLists.countryInfo.flag}"
+                app:cardCornerRadius="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline9"
                 app:layout_constraintStart_toStartOf="@+id/guideline8"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background"
-                tools:ignore="VectorDrawableCompat" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/mFlag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:contentDescription="@string/flag"
+                    android:scaleType="centerCrop"
+                    app:imageResource="@{countryLists.countryInfo.flag}"
+                    app:srcCompat="@drawable/ic_launcher_background"
+                    tools:ignore="VectorDrawableCompat" />
+
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.06" />
+                app:layout_constraintGuide_percent="0.04" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline9"
@@ -73,44 +84,52 @@
                 android:id="@+id/mCountryName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="@{countryLists.country}"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#061253"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/mActiveCase"
-                app:layout_constraintEnd_toEndOf="@+id/mActiveCase"
-                app:layout_constraintStart_toStartOf="@+id/textView8"
-                app:layout_constraintTop_toTopOf="@+id/mFlag" />
+                app:layout_constraintEnd_toStartOf="@+id/guideline10"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toTopOf="@+id/image_card" />
 
             <TextView
                 android:id="@+id/mActiveCase"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
                 android:text="@{NumberString.numberFormat(countryLists.active)}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/mFlag"
+                app:layout_constraintBottom_toBottomOf="@+id/image_card"
                 app:layout_constraintEnd_toStartOf="@+id/guideline10"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/mCountryName" />
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/active_cases"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/mActiveCase"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintBaseline_toBaselineOf="@+id/mActiveCase"
                 app:layout_constraintEnd_toStartOf="@+id/mActiveCase"
-                app:layout_constraintStart_toEndOf="@+id/mFlag" />
+                app:layout_constraintStart_toStartOf="@+id/mCountryName" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent=".90" />
+                app:layout_constraintGuide_percent="0.96" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
