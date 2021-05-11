@@ -9,7 +9,8 @@ import java.util.Locale;
 
 public class NumberString {
 
-    public static String numberFormat(int number)
+
+    public static String numberFormat(long number)
     {
         return NumberFormat.getInstance(Locale.US).format(number);
     }

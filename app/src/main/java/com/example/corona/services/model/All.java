@@ -1,6 +1,5 @@
 package com.example.corona.services.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class All {
@@ -8,52 +7,52 @@ public class All {
 
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("recovered")
-    private int recovered;
+    private long recovered;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("deaths")
-    private int deaths;
+    private long deaths;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("cases")
-    private int cases;
+    private long cases;
     @com.google.gson.annotations.Expose
     @SerializedName("active")
-    private int activeCases;
+    private long activeCases;
     @com.google.gson.annotations.Expose
     @SerializedName("critical")
-    private int critical;
+    private long critical;
     @com.google.gson.annotations.Expose
     @SerializedName("tests")
-    private int TotalTests;
+    private long TotalTests;
     @com.google.gson.annotations.Expose
     @SerializedName("affectedCountries")
-    private int affectedCountries;
+    private long affectedCountries;
 
 
-    public int getRecovered() {
+    public long getRecovered() {
         return recovered;
     }
 
-    public int getDeaths() {
+    public long getDeaths() {
         return deaths;
     }
 
-    public int getCases() {
+    public long getCases() {
         return cases;
     }
 
-    public int getActiveCases() {
+    public long getActiveCases() {
         return activeCases;
     }
 
-    public int getCritical() {
+    public long getCritical() {
         return critical;
     }
 
-    public int getTotalTests() {
+    public long getTotalTests() {
         return TotalTests;
     }
 
-    public int getAffectedCountries() {
+    public long getAffectedCountries() {
         return affectedCountries;
     }
 }

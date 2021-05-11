@@ -132,11 +132,11 @@
             app:layout_constraintStart_toStartOf="@+id/textView2"
             tools:text="Recovered :" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button"
             android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="#D8CCF1"
+            android:layout_height="wrap_content"
+            app:cornerRadius="12dp"
             android:onClick="@{() -> iMainActivityCallBack.detailedInfo()}"
             android:text="@string/details_info"
             android:textAlignment="center"
