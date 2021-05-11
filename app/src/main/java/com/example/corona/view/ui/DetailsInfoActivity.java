@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.example.corona.R;
 import com.example.corona.databinding.ActivityDetailsInfoBinding;
@@ -24,6 +25,7 @@ public class DetailsInfoActivity extends AppCompatActivity {
 
         detailsInfoBinding = DataBindingUtil.setContentView(this, R.layout.activity_details_info);
         model_detailsInfo = new ViewModelProvider(this).get(CoronaServiceViewModel_DetailsInfo.class);
+
 
         detailsInfoBinding.progressBar.setVisibility(View.VISIBLE);
 

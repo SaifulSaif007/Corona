@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 
 import com.example.corona.R;
@@ -49,6 +50,7 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
         initRecycler();
 
         coronaServiceViewModel_countryList = new ViewModelProvider(this).get(CoronaServiceViewModel_CountryList.class);
+
         ObserveViewModel(coronaServiceViewModel_countryList);
 
         getSupportActionBar().setTitle("Country");

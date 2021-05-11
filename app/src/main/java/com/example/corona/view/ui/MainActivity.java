@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.example.corona.R;
 import com.example.corona.databinding.ActivityMainBinding;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         serviceViewModel_all = new ViewModelProvider(this).get(CoronaServiceViewModel_All.class);
         Objects.requireNonNull(getSupportActionBar()).hide();
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         activityMainBinding.progressBar.setVisibility(View.VISIBLE);
         observeViewModel(serviceViewModel_all);
         activityMainBinding.setIMainActivityCallBack(this);

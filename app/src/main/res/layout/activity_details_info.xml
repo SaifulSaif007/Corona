@@ -43,7 +43,7 @@
                 android:id="@+id/mCountryName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/nunito_bold"
                 android:text="@{Detail.country}"
                 android:textAlignment="center"
@@ -51,8 +51,8 @@
                 android:textColor="@color/design_default_color_secondary_variant"
                 android:textColorHighlight="@android:color/holo_purple"
                 android:textColorLink="@android:color/holo_green_light"
-                android:textSize="30sp"
-                android:textStyle="bold|italic"
+                android:textSize="26sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guideline14"
                 app:layout_constraintStart_toStartOf="@+id/guideline11"
                 app:layout_constraintTop_toTopOf="parent"
@@ -129,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.08" />
+                app:layout_constraintGuide_percent="0.06" />
 
             <TextView
                 android:id="@+id/mTotalCases"
@@ -234,7 +234,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9" />
+                app:layout_constraintGuide_percent="0.94" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline17"
@@ -271,7 +271,6 @@
                 android:id="@+id/textView20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:fontFamily="@font/nunito_italic"
                 android:maxLines="2"
@@ -294,7 +293,7 @@
                 android:fontFamily="@font/nunito_italic"
                 android:text="Updated On: "
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/upTime"
                 app:layout_constraintHorizontal_chainStyle="spread"
@@ -308,7 +307,7 @@
                 android:fontFamily="@font/nunito_italic"
                 android:text="@{NumberString.DateFormat(Detail.updated)}"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView21"

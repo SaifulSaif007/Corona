@@ -136,13 +136,15 @@
             android:id="@+id/button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cornerRadius="12dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:onClick="@{() -> iMainActivityCallBack.detailedInfo()}"
             android:text="@string/details_info"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="14sp"
             android:textStyle="italic"
+            app:cornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -160,7 +162,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.06" />
 
         <TextView
             android:id="@+id/mTotal"
@@ -218,7 +220,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.88" />
+            app:layout_constraintGuide_percent="0.94" />
 
         <TextView
             android:id="@+id/textview7"
