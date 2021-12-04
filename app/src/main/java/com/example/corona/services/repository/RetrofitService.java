@@ -1,5 +1,6 @@
 package com.example.corona.services.repository;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.example.corona.services.Context.GlobalApplication;
@@ -17,9 +18,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
+    @SuppressLint("StaticFieldLeak")
     static Context context = GlobalApplication.getAppContext();
     static File HttpCacheDirectory = new File(Objects.requireNonNull(context).getCacheDir() , "httpCache");
     static Cache cache  = new Cache(HttpCacheDirectory, 10*1021*1024);
+
+    private static final String BASE_URL = "https://corona.lmao.ninja/v3/covid-19/";
 
     static OkHttpClient httpClient = new OkHttpClient.Builder()
             .cache(cache)
@@ -36,9 +40,8 @@ public class RetrofitService {
             })
             .build();
 
-    private static String BASE_URL = "https://corona.lmao.ninja/v2/";
 
-    private static Retrofit retrofit = new Retrofit.Builder()
+    private static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
@@ -46,7 +49,7 @@ public class RetrofitService {
             .build();
 
 
-    public static <S> S cteateService(Class<S> serviceClass) {
+    public static <S> S createService(Class<S> serviceClass) {
         return retrofit.create(serviceClass);
     }
 

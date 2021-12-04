@@ -21,7 +21,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_country_list"
+            android:paddingBottom="10dp"
+            android:clipToPadding="false"
+            />
 
         <ProgressBar
             android:id="@+id/progressBar"

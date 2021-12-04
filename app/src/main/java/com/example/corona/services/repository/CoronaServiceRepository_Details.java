@@ -12,9 +12,6 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class CoronaServiceRepository_Details {
 
@@ -27,10 +24,10 @@ public class CoronaServiceRepository_Details {
         return serviceRepositoryDetails;
     }
 
-    private CoronaServices coronaServices;
+    private final CoronaServices coronaServices;
 
     private CoronaServiceRepository_Details(){
-        coronaServices = RetrofitService.cteateService(CoronaServices.class);
+        coronaServices = RetrofitService.createService(CoronaServices.class);
     }
 
 
