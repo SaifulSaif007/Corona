@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class All {
 
-
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("recovered")
     private long recovered;

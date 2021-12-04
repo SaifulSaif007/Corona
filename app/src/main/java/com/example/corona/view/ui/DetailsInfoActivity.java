@@ -14,6 +14,8 @@ import com.example.corona.R;
 import com.example.corona.databinding.ActivityDetailsInfoBinding;
 import com.example.corona.viewmodel.CoronaServiceViewModel_DetailsInfo;
 
+import java.util.Objects;
+
 public class DetailsInfoActivity extends AppCompatActivity {
 
     ActivityDetailsInfoBinding detailsInfoBinding;
@@ -31,7 +33,7 @@ public class DetailsInfoActivity extends AppCompatActivity {
 
         String Country = getIntent().getStringExtra("country");
 
-        getSupportActionBar().setTitle("Corona Updates");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Corona Updates");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         observeViewModel(model_detailsInfo, Country);
         

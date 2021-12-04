@@ -3,23 +3,14 @@ package com.example.corona.view.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.animation.Animation;
 
 import com.example.corona.R;
 import com.example.corona.databinding.ActivityCountryListBinding;
@@ -29,12 +20,11 @@ import com.example.corona.view.util.ItemDecorator;
 import com.example.corona.viewmodel.CoronaServiceViewModel_CountryList;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class CountryListActivity extends AppCompatActivity implements CountryListRecycler_Adapter.itemClickListner{
+public class CountryListActivity extends AppCompatActivity implements CountryListRecycler_Adapter.itemClickListener {
 
     ActivityCountryListBinding countryListBinding;
     CoronaServiceViewModel_CountryList coronaServiceViewModel_countryList;
@@ -53,7 +43,7 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
 
         ObserveViewModel(coronaServiceViewModel_countryList);
 
-        getSupportActionBar().setTitle("Country");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Country");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -88,7 +78,6 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
 
                 countryLists.addAll(countryList);
                 Collections.reverse(countryLists);
-
                 countryListRecyclerAdapter.SetAllList(countryList);
 
                 countryListRecyclerAdapter.notifyDataSetChanged();
@@ -102,9 +91,9 @@ public class CountryListActivity extends AppCompatActivity implements CountryLis
     @Override
     public void onItemClick(int position) {
 
-        Intent detaitlsIntent = new Intent(this, DetailsInfoActivity.class);
-        detaitlsIntent.putExtra("country", countryLists.get(position).getCountry()) ;
-        startActivity(detaitlsIntent);
+        Intent detailsIntent = new Intent(this, DetailsInfoActivity.class);
+        detailsIntent.putExtra("country", countryLists.get(position).getCountry()) ;
+        startActivity(detailsIntent);
     }
 
     @Override

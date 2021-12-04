@@ -1,6 +1,6 @@
 package com.example.corona.view.adapter;
 
-import android.util.Log;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,17 +8,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.corona.R;
 import com.example.corona.databinding.ItemCountryListBinding;
 import com.example.corona.services.model.CountryList;
-import com.example.corona.view.callback.ICountryListRecycler;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -26,14 +21,13 @@ import java.util.List;
 
 public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryListRecycler_Adapter.RecycleViewHolder> implements Filterable {
 
-    private List<CountryList> countryLists;
+    private final List<CountryList> countryLists;
     private List<CountryList> countryListALL;
-    private itemClickListner listner;
-    private int lastPosition = -1;
+    private final itemClickListener listener;
 
-    public CountryListRecycler_Adapter(List<CountryList> countryLists, itemClickListner clickListner) {
+    public CountryListRecycler_Adapter(List<CountryList> countryLists, itemClickListener clickListener) {
         this.countryLists = countryLists;
-        this.listner = clickListner;
+        this.listener = clickListener;
     }
 
     public void SetAllList(List<CountryList> countryListA){
@@ -56,9 +50,9 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
         holder.itemCountryListBinding.setCountryLists(countryLists.get(position));
 
         final ItemCountryListBinding itemCountryListBinding = holder.getItemCountryListBinding();
-        setAnimation(holder.itemView, position);
+        setAnimation(holder.itemView);
 
-        itemCountryListBinding.setICountryCallBack(() -> listner.onItemClick(position));
+        itemCountryListBinding.setICountryCallBack(() -> listener.onItemClick(position));
     }
 
     @Override
@@ -72,7 +66,7 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
         return filter;
     }
 
-    private Filter filter = new Filter() {
+    private final Filter filter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<CountryList> filteredList = new ArrayList<>();
@@ -93,6 +87,7 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
             return filterResults;
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             countryLists.clear();
@@ -100,8 +95,6 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
             notifyDataSetChanged();
         }
     };
-
-
 
 
     static class RecycleViewHolder extends RecyclerView.ViewHolder{
@@ -112,27 +105,20 @@ public class CountryListRecycler_Adapter extends RecyclerView.Adapter<CountryLis
             super(itemView.getRoot());
 
             itemCountryListBinding = itemView;
-
         }
-
 
         public ItemCountryListBinding getItemCountryListBinding(){
             return itemCountryListBinding;
         }
     }
 
-    private void setAnimation(View viewToAnimate, int position)
+    private void setAnimation(View viewToAnimate)
     {
-        // If the bound view wasn't previously displayed on screen, it's animated
-
             Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(), android.R.anim.fade_in);
             viewToAnimate.startAnimation(animation);
-            lastPosition = position;
-
     }
 
-
-    public interface itemClickListner{
+    public interface itemClickListener {
         void onItemClick(int position);
     }
 }

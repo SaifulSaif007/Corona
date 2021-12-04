@@ -14,9 +14,6 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class CoronaServiceRepository_CountryList {
 
@@ -29,10 +26,10 @@ public class CoronaServiceRepository_CountryList {
         return repository_countryList;
     }
 
-    private CoronaServices coronaServices;
+    private final CoronaServices coronaServices;
 
     private CoronaServiceRepository_CountryList(){
-        coronaServices = RetrofitService.cteateService(CoronaServices.class);
+        coronaServices = RetrofitService.createService(CoronaServices.class);
     }
 
     public LiveData<List<CountryList>> getCountry(){
@@ -46,7 +43,6 @@ public class CoronaServiceRepository_CountryList {
                     public void onSubscribe(@NonNull Disposable d) {
 
                     }
-
                     @Override
                     public void onNext(@NonNull List<CountryList> countryLists) {
                         data.setValue(countryLists);
@@ -63,6 +59,9 @@ public class CoronaServiceRepository_CountryList {
                     }
                 });
 
+
         return data;
     }
+
+
 }
